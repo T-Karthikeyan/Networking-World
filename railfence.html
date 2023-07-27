@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel = "stylesheet" type = "text/css" href = "styles.css">
+    <title>Railfence cipher</title>
+</head>
+<body>
+
+    <!-- Header Starts Here... -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
+            <div class="container-fluid" style="margin-left: 7%;">
+              <a class="navbar-brand" href="/index.html">Networking <span class = "text-danger">World</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-danger"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 55%;">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active text-danger" aria-current="page" href="index.html#main">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html#algorithms">Algorithms</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html#about">About Us</a>
+                  </li>  
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <!-- Header Ends Here...  -->
+
+    <!-- Main Page Starts Here... -->
+    <section id = "code">
+      <div class = "container-fluid">
+        <table>
+          <tbody>
+            <tr><th><h5 class = "text-center p-3">CODE SNIPPET</h5></th></tr>
+            <tr>
+              <td>
+                <code>
+<pre>
+//<----------------------------------- RAIL FENCE CIPHER --------------------------------->
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+void main()
+{
+    int i, j, len, depth, zigzag;
+    char pt[100], ct[10][100];
+    printf("~~~~~~~~~~~ RAIL FENCE CIPHER ~~~~~~~~~~");
+    printf("\n\nEnter the plain text : ");
+    scanf("%s",pt);
+    printf("Enter the depth : ");
+    scanf("%d", &depth);
+    len = strlen(pt);
+    
+    // FILL ALL THE BOXES OF GIVEN LENGTH WITH '.'
+    for(i = 0; i < depth; i++)
+        for(j = 0; j < len; j++)
+            ct[i][j] = '.';
+    
+    // TRAVERSE ZIGZAG(UP-DOWN = 0, DOWN-UP = 1) AND PLACE CHARACTERS IN THEIR RESPECTIVE POSITIONS.
+    for(j = 0, zigzag = 0; j < len; zigzag++)
+    {
+        if(zigzag % 2 == 0)
+            for(i = 0; i < depth; i++, j++)
+                ct[i][j] = pt[j];
+        else
+            for(i = depth - 2; i > 0; i--, j++)
+                ct[i][j] = pt[j];
+    }
+    
+    // DISPLAY THE ENCRYPTED TEXT - CHARACTERS IN ORDER EXCEPT '.'
+    printf("Encrypted Text : ");
+    for(i = 0; i < depth; i++)
+        for(j = 0; j < len; j++)
+            if(ct[i][j] != '.')
+                printf("%c", ct[i][j]);
+    printf("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+}
+</pre>
+                </code>
+              </td>
+            </tr>
+            <tr><th><h5 class = "text-center p-3">CODE OUTPUT</h5></th></tr>
+            <tr>
+              <td>
+                <h6><i>Encryption</i></h6>
+<pre id = "output">
+~~~~~~~~~~~ RAIL FENCE CIPHER ~~~~~~~~~~
+  
+Enter the plain text : helloworld
+Enter the depth : 3
+Encrypted Text : holelwrdlo
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Main Page Ends Here... -->
+
+
+    <!-- Footer Starts Here... -->
+    <footer class = "text-center" style="background-color: black;">
+      <div style = "padding-top: 20px;">
+        <hr style ="height: 3px; color: white;">
+        <a class="btn btn-outline-danger" href="https://www.linkedin.com/in/t-karthikeyan/" role="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+        </a>
+        <a class="btn btn-outline-danger" href="https://github.com/T-Karthikeyan" role="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class = "text-white" style = "padding: 10px;"><span class = "text-danger">&copy; 2023</span> Copyrights</div>
+    
+    </footer>
+    <!-- Footer Ends Here... -->
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
